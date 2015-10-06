@@ -14,6 +14,6 @@ public abstract class TelaBase implements Screen {
 
     @Override
     public void hide() {
-        dispose();
+       dispose();
     }
 }
