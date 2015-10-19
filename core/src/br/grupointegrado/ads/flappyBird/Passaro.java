@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
- * Created by Willys on 05/10/2015.
+ * Created by Rafael on 05/10/2015.
  */
 public class Passaro {
 
@@ -34,10 +34,41 @@ public class Passaro {
 
         corpo = Util.criarCorpo(mundo, BodyDef.BodyType.DynamicBody, x, y);
 
-        CircleShape shape = new CircleShape();
-        shape.setRadius(18 / Util.PIXEL_METRO);
+        FixtureDef definicao = new FixtureDef();
+        definicao.density =1;
+        definicao.friction = 0.4f;
+        definicao.restitution = 0.3f;
 
-        Fixture forma = Util.criarForma(corpo,shape,"PASSARO");
-        shape.dispose();
+        BodyEditorLoader loader = new BodyEditorLoader(Gdx.files.internal("physics/bird.json"));
+        loader.attachFixture(corpo,"bird", definicao, 1, "PASSARO");
+
+    }
+
+    /**
+     * Atualiza o comportamento do passaro
+     * @param delta
+     */
+    public void atualizar(float delta){
+        atualizarVelocidade();
+    }
+
+    public void atualizarVelocidade(){
+        corpo.setLinearVelocity(2f,corpo.getLinearVelocity().y);
+
+    }
+
+
+    /*
+    *Aplica uma força positiva no Y para simular o Pulo
+    */
+
+    public void pular(){
+        corpo.setLinearVelocity(corpo.getLinearVelocity().x, 0);
+        corpo.applyForceToCenter(0,100,false);
+    }
+
+
+    public Body getCorpo(){
+        return corpo;
     }
 }

@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
- * Created by Willys on 05/10/2015.
+ * Created by Rafael on 05/10/2015.
  */
 public class Util {
 
